@@ -16,8 +16,10 @@ public enum ErrorCode {
     PARAMS_NOT_NULL(1009, "Param is not null", HttpStatus.BAD_REQUEST),
     SAVE_NOT_SUCCESS(1010, "Save data not success", HttpStatus.INTERNAL_SERVER_ERROR),
     ID_NOT_NULL(1011, "Id not null", HttpStatus.BAD_REQUEST),
-    USER_NOT_EXISTED(1012, "User not existed", HttpStatus.BAD_REQUEST)
-    ;
+    USER_NOT_EXISTED(1012, "User not existed", HttpStatus.BAD_REQUEST),
+    TOKEN_INVALID(1014, "Token invalid", HttpStatus.UNAUTHORIZED)
+
+            ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;
