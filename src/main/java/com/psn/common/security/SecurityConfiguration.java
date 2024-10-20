@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfiguration {
     private static final String[] PUBLIC_ENDPOINTS = {
-            "/api/v1/auth/authenticate"
+            "/api/v1/auth/authenticate", "/auth-service/api/v1/auth/authenticate"
     };
 
     @Bean
