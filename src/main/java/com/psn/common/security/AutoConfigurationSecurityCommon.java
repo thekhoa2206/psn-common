@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)  // Annotation này sẽ được áp dụng cho class
 @Retention(RetentionPolicy.RUNTIME)
-@Import(SecurityConfiguration.class)
+@Import({SecurityConfiguration.class, JwtAuthenticationFilter.class})
 public @interface AutoConfigurationSecurityCommon {
 
 }
