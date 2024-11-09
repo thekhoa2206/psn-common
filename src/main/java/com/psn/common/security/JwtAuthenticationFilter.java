@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final AuthService authService;
 
-    public JwtAuthenticationFilter(@Qualifier("JwtService") JwtService jwtService, AuthService authService) {
+    public JwtAuthenticationFilter(@Qualifier("JwtServiceCommon") JwtService jwtService, AuthService authService) {
         this.jwtService = jwtService;
         this.authService = authService;
     }

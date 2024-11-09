@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-@Service("JwtService")
+@Service("JwtServiceCommon")
 @Slf4j
 public class JwtServiceImpl implements JwtService {
     @Value("${token.signing.key}")
