@@ -1,7 +1,7 @@
 package com.psn.common.security;
 
 import com.psn.common.security.service.AuthService;
-import com.psn.common.security.service.JwtService;
+import com.psn.common.security.service.JwtServiceBase;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,11 +21,11 @@ import java.io.IOException;
 
 @Configuration
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final JwtService jwtService;
+    private final JwtServiceBase jwtServiceBase;
     private final AuthService authService;
 
-    public JwtAuthenticationFilter(@Qualifier("JwtServiceCommon") JwtService jwtService, AuthService authService) {
-        this.jwtService = jwtService;
+    public JwtAuthenticationFilter(@Qualifier("JwtServiceCommon") JwtServiceBase jwtServiceBase, AuthService authService) {
+        this.jwtServiceBase = jwtServiceBase;
         this.authService = authService;
     }
 
@@ -41,12 +41,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         jwt = authHeader.substring(7);
-        username = jwtService.extractUserName(jwt);
+        username = jwtServiceBase.extractUserName(jwt);
         if (StringUtils.isNotEmpty(username)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = authService.userDetailsService()
                     .loadUserByUsername(username);
-            if (jwtService.isTokenValid(jwt, userDetails)) {
+            if (jwtServiceBase.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

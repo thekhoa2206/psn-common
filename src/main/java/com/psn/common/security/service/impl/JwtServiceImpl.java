@@ -1,6 +1,6 @@
 package com.psn.common.security.service.impl;
 
-import com.psn.common.security.service.JwtService;
+import com.psn.common.security.service.JwtServiceBase;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.function.Function;
 @Service("JwtServiceCommon")
 @Slf4j
-public class JwtServiceImpl implements JwtService {
+public class JwtServiceImpl implements JwtServiceBase {
     @Value("${token.signing.key}")
     private String jwtSigningKey;
     @Override

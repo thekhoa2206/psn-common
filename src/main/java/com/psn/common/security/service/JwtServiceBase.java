@@ -2,7 +2,7 @@ package com.psn.common.security.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-public interface JwtService {
+public interface JwtServiceBase {
     String extractUserName(String token);
 
     String generateToken(UserDetails userDetails);
