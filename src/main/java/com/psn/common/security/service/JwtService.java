@@ -1,6 +1,5 @@
 package com.psn.common.security.service;
 
-import com.psn.common.security.service.dto.UserSecurityDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public interface JwtService {
