@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtServiceBase jwtServiceBase;
     private final AuthService authService;
 
-    public JwtAuthenticationFilter(@Qualifier("JwtServiceCommon") JwtServiceBase jwtServiceBase, AuthService authService) {
+    public JwtAuthenticationFilter(JwtServiceBase jwtServiceBase, AuthService authService) {
         this.jwtServiceBase = jwtServiceBase;
         this.authService = authService;
     }
