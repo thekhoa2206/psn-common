@@ -25,7 +25,7 @@ public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthService authService;
     private static final String[] PUBLIC_ENDPOINTS = {
-            "/api/v1/auth/authenticate", "/auth-service/api/v1/auth/authenticate"
+            "/api/v1/auth/authenticate", "/api/v1/auth/load-user-by-user-name"
     };
 
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter, AuthService authService) {
