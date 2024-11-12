@@ -32,7 +32,9 @@ public class AuthServiceClient {
         try {
             ResponseEntity<UserDetails> response =
                     authServiceWebClient.method(HttpMethod.GET)
-                            .uri(path.concat("?username={username}"), username)
+                            .uri( uriBuilder -> uriBuilder.path(path)
+                                    .queryParam("username", username)
+                                    .build())
                             .headers(httpHeaders -> {
                                 httpHeaders.set(CONTENT_TYPE, APPLICATION_JSON_VALUE);
                             }).retrieve().toEntity(UserDetails.class)
