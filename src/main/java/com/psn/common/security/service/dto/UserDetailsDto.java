@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSecurityDetails {
+public class UserDetailsDto implements UserDetails {
     private long id;
     private String username;
 
@@ -39,6 +39,38 @@ public class UserSecurityDetails {
         private String name;
         private String code;
         private String scopes;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.roles.isEmpty()) return Collections.emptyList();
+        var roleScopes = this.roles.stream().map(RoleSecurity::getScopes).collect(Collectors.joining(","));
+        return Stream.of(roleScopes.split(",")).map(SimpleGrantedAuthority::new).toList();
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 }
